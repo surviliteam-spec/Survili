@@ -81,6 +81,12 @@
             border: 1px solid rgba(217, 27, 138, 0.25);
         }
 
+        .glass-panel-gold {
+            background: rgba(255, 209, 102, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 209, 102, 0.25);
+        }
+
         .glass-input {
             background: rgba(12, 7, 25, 0.7);
             border: 1px solid rgba(217, 27, 138, 0.3);
@@ -129,20 +135,24 @@
 
                 <!-- HEADER ACTIONS -->
                 <div class="flex items-center gap-1.5 sm:gap-3">
+                    <!-- LANGUAGE SWITCHER -->
                     <button onclick="toggleLanguage()" class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl glass-panel text-[10px] sm:text-xs font-bold text-brand-gold border border-brand-gold/30 hover:bg-brand-gold/20 transition-all">
                         <span id="langLabel">GE | EN</span>
                     </button>
 
+                    <!-- AI CHAT BUTTON -->
                     <button onclick="openAIChatModal()" class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-brand-accent to-pink-600 text-white font-semibold text-[10px] sm:text-xs flex items-center gap-1.5 shadow-lg hover:opacity-90 transition-all">
                         <i class="fa-solid fa-wand-magic-sparkles text-brand-gold"></i>
                         <span class="hidden xs:inline" data-i18n="nav-ai">AI ასისტენტი</span>
                     </button>
 
+                    <!-- USER ACCOUNT BUTTON -->
                     <button onclick="openUserModal()" class="p-2 sm:p-2.5 rounded-xl glass-panel text-white hover:border-brand-accent transition-all flex items-center gap-2">
                         <i class="fa-solid fa-user text-brand-gold text-xs sm:text-base"></i>
                         <span id="headerUserName" class="hidden sm:inline text-xs font-semibold" data-i18n="nav-profile">პროფილი</span>
                     </button>
 
+                    <!-- WISHLIST BUTTON -->
                     <button onclick="openWishlistModal()" class="relative p-2 sm:p-2.5 rounded-xl glass-panel text-brand-gold hover:text-white transition-all">
                         <i class="fa-solid fa-heart text-sm sm:text-lg"></i>
                         <span id="wishlistBadge" class="absolute -top-1 -right-1 bg-brand-accent text-white text-[9px] sm:text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">0</span>
@@ -161,7 +171,7 @@
                     </span> ერთად
                 </h1>
                 <p class="text-gray-300 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto" data-i18n="hero-subtitle">
-                    არ იცი რა აჩუქო? მიუთითე ვისთვის ეძებ და ბიუჯეტი — ხელოვნური ინტელექტი შეგირჩევს საუკეთესო იდეებს.
+                    არ იცი რა აჩუქო? მიუთითე ვისთვის ეძებ, ასაკი და ბიუჯეტი — ხელოვნური ინტელექტი შეგირჩევს საუკეთესო იდეებს კატალოგიდან.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 max-w-xs sm:max-w-none mx-auto">
                     <a href="#catalog" class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-brand-accent to-pink-600 text-white font-bold text-xs sm:text-sm shadow-xl hover:scale-105 transition-all text-center">
@@ -176,18 +186,18 @@
 
         <!-- CATALOG SECTION -->
         <section id="catalog" class="py-10 sm:py-16 px-4 max-w-7xl mx-auto w-full">
-            <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-i18n="catalog-title">საჩუქრების AI კატალოგი</h2>
-                <p class="text-gray-400 text-xs sm:text-sm" data-i18n="catalog-desc">აირჩიე კატეგორია და დაამატე იდეები შენს სურვილების სიაში</p>
+            <div class="text-center mb-8 sm:mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-i18n="catalog-title">საჩუქრების AI კატალოგი (50 იდეა)</h2>
+                <p class="text-gray-400 text-xs sm:text-sm" data-i18n="catalog-desc">აირჩიე კატეგორია და დაამატე უბრენდო, ორიგინალური იდეები შენს სურვილების სიაში</p>
             </div>
 
             <!-- Categories Filter -->
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10" id="categoryButtons">
-                <button onclick="filterCatalog('all')" data-cat="all" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-bold text-brand-gold border border-brand-gold/50 bg-brand-gold/10 transition-all" data-i18n="cat-all">ყველა (50)</button>
+            <div id="categoryFilters" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
+                <button onclick="filterCatalog('all')" data-cat="all" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-bold text-brand-gold border border-brand-gold/60 bg-brand-gold/15 transition-all" data-i18n="cat-all">ყველა (50)</button>
+                <button onclick="filterCatalog('kids')" data-cat="kids" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-semibold text-gray-300 hover:text-white hover:border-brand-accent transition-all" data-i18n="cat-kids">საბავშვო</button>
                 <button onclick="filterCatalog('tech')" data-cat="tech" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-semibold text-gray-300 hover:text-white hover:border-brand-accent transition-all" data-i18n="cat-tech">ტექნიკა & გაჯეტები</button>
                 <button onclick="filterCatalog('experience')" data-cat="experience" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-semibold text-gray-300 hover:text-white hover:border-brand-accent transition-all" data-i18n="cat-exp">შთაბეჭდილებები & სპა</button>
                 <button onclick="filterCatalog('home')" data-cat="home" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-semibold text-gray-300 hover:text-white hover:border-brand-accent transition-all" data-i18n="cat-home">სახლი & დეკორი</button>
-                <button onclick="filterCatalog('lifestyle')" data-cat="lifestyle" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-semibold text-gray-300 hover:text-white hover:border-brand-accent transition-all" data-i18n="cat-life">სტილი & თავის მოვლა</button>
                 <button onclick="filterCatalog('hobby')" data-cat="hobby" class="cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-semibold text-gray-300 hover:text-white hover:border-brand-accent transition-all" data-i18n="cat-hobby">ჰობი & შემოქმედება</button>
             </div>
 
@@ -203,18 +213,18 @@
                     <p class="text-gray-300 text-xs sm:text-sm mt-2" data-i18n="santa-desc">დაამატეთ მონაწილეები, გაანაწილეთ სანტები კონფიდენციალურად და ნახეთ მათი სურვილების სიები.</p>
                 </div>
 
-                <form id="santaForm" class="space-y-4" onsubmit="handleSantaDraw(event)">
+                <form id="santaForm" class="space-y-4">
                     <div>
                         <label class="block text-xs text-brand-gold mb-1 font-semibold" data-i18n="label-group">ჯგუფის / კომპანიის დასახელება</label>
-                        <input type="text" id="santaGroupName" required placeholder="მაგ: სურვილის გუნდი" class="w-full glass-input p-3 rounded-xl text-sm">
+                        <input type="text" id="santaGroupName" required placeholder="მაგ: სურვილის გუნდი" class="w-full glass-input p-3 rounded-xl text-sm" data-i18n-placeholder="group-placeholder">
                     </div>
 
                     <div id="membersContainer" class="space-y-3">
                         <label class="block text-xs text-brand-gold mb-1 font-semibold" data-i18n="label-members">მონაწილეები</label>
                         <div class="flex flex-col sm:flex-row gap-2 member-row">
-                            <input type="text" placeholder="სახელი გვარი" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-name">
-                            <input type="email" placeholder="ელ-ფოსტა" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-email">
-                            <input type="url" placeholder="Wishlist ბმული" class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-wishlist">
+                            <input type="text" placeholder="სახელი გვარი" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-name" data-i18n-placeholder="name-placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                            <input type="email" placeholder="ელ-ფოსტა" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-email" data-i18n-placeholder="email-placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                            <input type="url" placeholder="Wishlist ბმული" class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-wishlist" data-i18n-placeholder="wishlist-placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         </div>
                     </div>
 
@@ -245,21 +255,33 @@
 
     <!-- AI CHAT MODAL -->
     <div id="aiChatModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
-        <div class="w-full max-w-lg glass-panel p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-brand-accent/40 relative flex flex-col h-[480px] sm:h-[500px]">
+        <div class="w-full max-w-lg glass-panel p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-brand-accent/40 relative flex flex-col h-[520px] sm:h-[550px]">
             <button onclick="closeAIChatModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            <h3 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <h3 class="text-lg sm:text-xl font-bold text-white mb-3 flex items-center gap-2">
                 <i class="fa-solid fa-wand-magic-sparkles text-brand-gold"></i> <span data-i18n="ai-modal-title">სურვილის AI ასისტენტი</span>
             </h3>
-            <div id="chatMessages" class="flex-1 overflow-y-auto space-y-3 pr-1 mb-4 text-xs">
+            <div id="chatMessages" class="flex-1 overflow-y-auto space-y-3 pr-1 mb-3 text-xs leading-relaxed">
                 <div class="p-3 glass-panel rounded-2xl text-gray-300" data-i18n="ai-welcome">
-                    გამარჯობა! მე ვარ სურვილის AI ასისტენტი. ვისთვის ეძებ საჩუქარს და რა ბიუჯეტი გაქვს?
+                    გამარჯობა! მე ვარ სურვილის AI ასისტენტი. მომწერე ვისთვის ეძებ საჩუქარს და მე კატალოგიდან შეგირჩევ საუკეთესო ვარიანტებს!
                 </div>
             </div>
+            <!-- Quick Suggestions Chips -->
+            <div class="flex flex-wrap gap-1.5 mb-2.5">
+                <button onclick="quickAIPrompt(currentLang === 'ka' ? '7 წლის ბავშვისთვის' : 'For a 7 year old kid')" class="px-2.5 py-1 rounded-lg bg-brand-accent/20 border border-brand-accent/40 text-[11px] text-brand-gold hover:bg-brand-accent/30 transition-all">
+                    🧸 <span data-i18n="chip-kid">7 წლის ბავშვისთვის</span>
+                </button>
+                <button onclick="quickAIPrompt(currentLang === 'ka' ? 'დედისთვის 150 ლარამდე' : 'For mom under 150 GEL')" class="px-2.5 py-1 rounded-lg bg-brand-accent/20 border border-brand-accent/40 text-[11px] text-brand-gold hover:bg-brand-accent/30 transition-all">
+                    💐 <span data-i18n="chip-mom">დედისთვის 150 ₾-მდე</span>
+                </button>
+                <button onclick="quickAIPrompt(currentLang === 'ka' ? 'მეგობრისთვის ტექნიკა 250 ლარად' : 'Tech gift for friend 250 GEL')" class="px-2.5 py-1 rounded-lg bg-brand-accent/20 border border-brand-accent/40 text-[11px] text-brand-gold hover:bg-brand-accent/30 transition-all">
+                    🎧 <span data-i18n="chip-tech">ტექნიკა 250 ₾</span>
+                </button>
+            </div>
             <div class="flex gap-2">
-                <input type="text" id="aiInput" onkeypress="if(event.key==='Enter') sendAIMessage()" placeholder="დაწერე შენი კითხვა..." class="flex-1 glass-input p-3 rounded-xl text-xs">
-                <button onclick="sendAIMessage()" class="px-4 sm:px-5 py-3 rounded-xl bg-brand-accent text-white font-bold text-xs" data-i18n="ai-send">გაგზავნა</button>
+                <input type="text" id="aiInput" onkeypress="if(event.key==='Enter') sendAIMessage()" placeholder="მაგ: 7 წლის ბავშვისთვის 120 ლარამდე..." class="flex-1 glass-input p-3 rounded-xl text-xs" data-i18n-placeholder="ai-placeholder">
+                <button onclick="sendAIMessage()" class="px-4 sm:px-5 py-3 rounded-xl bg-brand-accent text-white font-bold text-xs hover:bg-brand-accentHover transition-all" data-i18n="ai-send">გაგზავნა</button>
             </div>
         </div>
     </div>
@@ -276,6 +298,7 @@
 
             <div id="authContainer" class="space-y-4">
                 <p class="text-xs text-gray-300" data-i18n="auth-desc">შედით სისტემაში თქვენი Google ანგარიშით, რათა შეინახოთ სურვილების სია:</p>
+                
                 <button onclick="loginWithGoogle()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-accent to-pink-600 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-3 shadow-lg hover:opacity-90 transition-all">
                     <i class="fa-brands fa-google text-white text-base"></i>
                     <span data-i18n="btn-google">შესვლა Google-ით</span>
@@ -317,6 +340,12 @@
         </div>
     </div>
 
+    <!-- CUSTOM MESSAGE TOAST (Replaces native alert) -->
+    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 hidden glass-panel border border-brand-gold/50 px-4 py-3 rounded-2xl shadow-2xl text-xs text-white flex items-center gap-2.5 transition-all">
+        <i class="fa-solid fa-circle-info text-brand-gold text-base"></i>
+        <span id="toastText"></span>
+    </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
         const SUPABASE_URL = "https://ktvoacxzsikryqfchxlp.supabase.co";
@@ -327,6 +356,18 @@
             dbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         }
 
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            const toastText = document.getElementById('toastText');
+            if (!toast || !toastText) return;
+            toastText.innerText = msg;
+            toast.classList.remove('hidden');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
         const translations = {
             ka: {
                 "nav-home": "მთავარი",
@@ -335,16 +376,16 @@
                 "nav-ai": "AI ასისტენტი",
                 "nav-profile": "პროფილი",
                 "hero-title": "იპოვე იდეალური საჩუქარი <br/> <span class='bg-clip-text text-transparent bg-gradient-to-r from-brand-accent via-pink-400 to-brand-gold'>სურვილის AI ასისტენტთან</span> ერთად",
-                "hero-subtitle": "არ იცი რა აჩუქო? მიუთითე ვისთვის ეძებ და ბიუჯეტი — ხელოვნური ინტელექტი შეგირჩევს საუკეთესო იდეებს.",
+                "hero-subtitle": "არ იცი რა აჩუქო? მიუთითე ვისთვის ეძებ, ასაკი და ბიუჯეტი — ხელოვნური ინტელექტი შეგირჩევს საუკეთესო იდეებს კატალოგიდან.",
                 "hero-btn-catalog": "კატალოგის დათვალიერება",
                 "hero-btn-ai": "AI კონსულტაცია",
-                "catalog-title": "საჩუქრების AI კატალოგი",
-                "catalog-desc": "აირჩიე კატეგორია და დაამატე იდეები შენს სურვილების სიაში",
+                "catalog-title": "საჩუქრების AI კატალოგი (50 იდეა)",
+                "catalog-desc": "აირჩიე კატეგორია და დაამატე უბრენდო, ორიგინალური იდეები შენს სურვილების სიაში",
                 "cat-all": "ყველა (50)",
+                "cat-kids": "საბავშვო",
                 "cat-tech": "ტექნიკა & გაჯეტები",
                 "cat-exp": "შთაბეჭდილებები & სპა",
                 "cat-home": "სახლი & დეკორი",
-                "cat-life": "სტილი & თავის მოვლა",
                 "cat-hobby": "ჰობი & შემოქმედება",
                 "santa-title": "გახდი სანტა შენი გუნდისთვის",
                 "santa-desc": "დაამატეთ მონაწილეები, გაანაწილეთ სანტები კონფიდენციალურად და ნახეთ მათი სურვილების სიები.",
@@ -353,9 +394,20 @@
                 "btn-add": "წევრის დამატება",
                 "btn-draw": "გახდი სანტა",
                 "santa-success": "🔒 სანტები წარმატებით განაწილდა!",
+                "group-placeholder": "მაგ: სურვილის გუნდი",
+                "name-placeholder": "სახელი გვარი",
+                "email-placeholder": "ელ-ფოსტა",
+                "wishlist-placeholder": "Wishlist ბმული",
                 "ai-modal-title": "სურვილის AI ასისტენტი",
-                "ai-welcome": "გამარჯობა! მე ვარ სურვილის AI ასისტენტი. ვისთვის ეძებ საჩუქარს და რა ბიუჯეტი გაქვს?",
+                "ai-welcome": "გამარჯობა! მე ვარ სურვილის AI ასისტენტი. მომწერე ვისთვის ეძებ საჩუქარს და მე კატალოგიდან შეგირჩევ საუკეთესო ვარიანტებს!",
+                "ai-placeholder": "მაგ: 7 წლის ბავშვისთვის 120 ლარამდე...",
                 "ai-send": "გაგზავნა",
+                "ai-you": "შენ",
+                "ai-assistant": "AI ასისტენტი",
+                "ai-thinking": "AI ასისტენტი არჩევს საჩუქრებს...",
+                "chip-kid": "7 წლის ბავშვისთვის",
+                "chip-mom": "დედისთვის 150 ₾-მდე",
+                "chip-tech": "ტექნიკა 250 ₾",
                 "modal-user-title": "ავტორიზაცია / პროფილი",
                 "auth-desc": "შედით სისტემაში თქვენი Google ანგარიშით, რათა შეინახოთ სურვილების სია:",
                 "btn-google": "შესვლა Google-ით",
@@ -372,16 +424,16 @@
                 "nav-ai": "AI Assistant",
                 "nav-profile": "Profile",
                 "hero-title": "Find the Perfect Gift <br/> <span class='bg-clip-text text-transparent bg-gradient-to-r from-brand-accent via-pink-400 to-brand-gold'>with Survili AI Assistant</span>",
-                "hero-subtitle": "Don't know what to gift? Specify who you are looking for and your budget — AI will choose the best ideas.",
+                "hero-subtitle": "Don't know what to gift? Specify who you are looking for, their age, and budget — AI will choose the best ideas from our catalog.",
                 "hero-btn-catalog": "Browse Catalog",
                 "hero-btn-ai": "AI Consultation",
-                "catalog-title": "AI Gift Catalog",
-                "catalog-desc": "Select a category and add ideas to your wishlist",
+                "catalog-title": "AI Gift Catalog (50 Ideas)",
+                "catalog-desc": "Select a category and add unbranded, original gift ideas to your wishlist",
                 "cat-all": "All (50)",
+                "cat-kids": "Kids & Toys",
                 "cat-tech": "Tech & Gadgets",
                 "cat-exp": "Experiences & Spa",
                 "cat-home": "Home & Decor",
-                "cat-life": "Style & Self-Care",
                 "cat-hobby": "Hobby & Creativity",
                 "santa-title": "Become Santa for Your Team",
                 "santa-desc": "Add participants, confidentially assign santas, and view their wishlists.",
@@ -390,9 +442,20 @@
                 "btn-add": "Add Member",
                 "btn-draw": "Draw Santa",
                 "santa-success": "🔒 Santas Successfully Assigned!",
+                "group-placeholder": "e.g., Survili Team",
+                "name-placeholder": "Full Name",
+                "email-placeholder": "Email",
+                "wishlist-placeholder": "Wishlist Link",
                 "ai-modal-title": "Survili AI Assistant",
-                "ai-welcome": "Hello! I am Survili AI Assistant. Who are you looking a gift for and what is your budget?",
+                "ai-welcome": "Hello! I am Survili AI Assistant. Tell me who you are shopping for and I will select the best items from our catalog!",
+                "ai-placeholder": "e.g., for a 7 year old kid under 120 GEL...",
                 "ai-send": "Send",
+                "ai-you": "You",
+                "ai-assistant": "AI Assistant",
+                "ai-thinking": "AI Assistant is selecting gifts...",
+                "chip-kid": "For a 7 year old kid",
+                "chip-mom": "For mom under 150 GEL",
+                "chip-tech": "Tech under 250 GEL",
                 "modal-user-title": "Authorization / Profile",
                 "auth-desc": "Sign in with your Google account to save your wishlist:",
                 "btn-google": "Sign in with Google",
@@ -406,7 +469,6 @@
 
         let currentLang = 'ka';
         let currentCategory = 'all';
-        let wishlist = [];
 
         function toggleLanguage() {
             currentLang = currentLang === 'ka' ? 'en' : 'ka';
@@ -416,251 +478,756 @@
                     el.innerHTML = translations[currentLang][key];
                 }
             });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
+                }
+            });
             document.getElementById('langLabel').innerText = currentLang === 'ka' ? 'GE | EN' : 'EN | GE';
             renderCatalog(currentCategory);
             renderWishlist();
         }
 
-        // 50 პროდუქტიანი სრული მასივი
+        // 50 UNBRANDED DIVERSE GIFT ITEMS WITH GENDER, INTERESTS & AGE METADATA FOR AI MATCHING
         const catalogItems = [
-            { id: 1, nameKa: "ჭკვიანი სპორტული საათი", nameEn: "Smart Fitness Watch", priceNum: 150, price: "150 ₾", cat: "tech", icon: "fa-clock" },
-            { id: 2, nameKa: "უსადენო ყურსასმენები", nameEn: "Wireless Earbuds", priceNum: 120, price: "120 ₾", cat: "tech", icon: "fa-headphones" },
-            { id: 3, nameKa: "პორტატული ბლუთუზ დინამიკი", nameEn: "Bluetooth Speaker", priceNum: 95, price: "95 ₾", cat: "tech", icon: "fa-volume-high" },
-            { id: 4, nameKa: "Power Bank 20000mAh", nameEn: "Power Bank 20000mAh", priceNum: 85, price: "85 ₾", cat: "tech", icon: "fa-battery-full" },
-            { id: 5, nameKa: "ელექტრონული წიგნების წამკითხველი", nameEn: "E-Book Reader", priceNum: 320, price: "320 ₾", cat: "tech", icon: "fa-tablet-screen-button" },
-            { id: 6, nameKa: "მინი პროექტორი", nameEn: "Mini Projector", priceNum: 290, price: "290 ₾", cat: "tech", icon: "fa-film" },
-            { id: 7, nameKa: "სმარტფონის სტაბილიზატორი", nameEn: "Smartphone Gimbal", priceNum: 210, price: "210 ₾", cat: "tech", icon: "fa-video" },
-            { id: 8, nameKa: "3-ერთში უსადენო დამტენი", nameEn: "3-in-1 Wireless Charger", priceNum: 110, price: "110 ₾", cat: "tech", icon: "fa-bolt" },
-            { id: 9, nameKa: "სელფის განათება შტატივით", nameEn: "Ring Light with Tripod", priceNum: 75, price: "75 ₾", cat: "tech", icon: "fa-lightbulb" },
-            { id: 10, nameKa: "მექანიკური კლავიატურა", nameEn: "Mechanical Keyboard", priceNum: 165, price: "165 ₾", cat: "tech", icon: "fa-keyboard" },
-            
-            { id: 11, nameKa: "სპა რელაქსაციის პაკეტი", nameEn: "Spa Relaxation Package", priceNum: 180, price: "180 ₾", cat: "experience", icon: "fa-spa" },
-            { id: 12, nameKa: "პარაპლანით ფრენა", nameEn: "Paragliding Flight", priceNum: 300, price: "300 ₾", cat: "experience", icon: "fa-plane" },
-            { id: 13, nameKa: "ღვინის დეგუსტაცია ორისთვის", nameEn: "Wine Tasting for Two", priceNum: 220, price: "220 ₾", cat: "experience", icon: "fa-wine-glass" },
-            { id: 14, nameKa: "კერამიკის ძერწვის მასტერკლასი", nameEn: "Pottery Masterclass", priceNum: 90, price: "90 ₾", cat: "experience", icon: "fa-hands" },
-            { id: 15, nameKa: "ცხენებით გასეირნება", nameEn: "Horseback Riding Tour", priceNum: 130, price: "130 ₾", cat: "experience", icon: "fa-horse" },
-            { id: 16, nameKa: "კულინარიული მასტერკლასი", nameEn: "Culinary Masterclass", priceNum: 140, price: "140 ₾", cat: "experience", icon: "fa-utensils" },
-            { id: 17, nameKa: "კარტინგის რბოლის ვაუჩერი", nameEn: "Karting Voucher", priceNum: 70, price: "70 ₾", cat: "experience", icon: "fa-flag-checkered" },
-            { id: 18, nameKa: "საჰაერო ბურთით გასეირნება", nameEn: "Hot Air Balloon Ride", priceNum: 450, price: "450 ₾", cat: "experience", icon: "fa-cloud-sun" },
-            { id: 19, nameKa: "გოგირდის აბანოების ვაუჩერი", nameEn: "Sulfur Baths Voucher", priceNum: 150, price: "150 ₾", cat: "experience", icon: "fa-hot-tub-person" },
-            { id: 20, nameKa: "პროფესიონალური ფოტოსესია", nameEn: "Studio Photoshoot", priceNum: 200, price: "200 ₾", cat: "experience", icon: "fa-camera" },
+            // --- KIDS (საბავშვო - 12 პროდუქტი) ---
+            { id: 1, nameKa: "მაგნიტური კონსტრუქტორის ნაკრები (100 დეტალი)", nameEn: "Magnetic Building Blocks Set (100 pcs)", priceValue: 95, price: "95 ₾", cat: "kids", icon: "fa-cubes", gender: "unisex", minAge: 3, maxAge: 12, interests: ["toys", "science"], tags: ["ბავშვ", "კონსტრუქტორ", "სათამაშო", "ლოგიკ", "kid", "child", "toy", "blocks"] },
+            { id: 2, nameKa: "საბავშვო ასტრონომიული ტელესკოპი", nameEn: "Kids Astronomical Telescope", priceValue: 165, price: "165 ₾", cat: "kids", icon: "fa-meteor", gender: "unisex", minAge: 6, maxAge: 15, interests: ["science", "adventure"], tags: ["ბავშვ", "კოსმოს", "ვარსკვლავ", "მეცნიერ", "kid", "child", "science", "space"] },
+            { id: 3, nameKa: "პატარა მეცნიერის ქიმიური ექსპერიმენტების ნაკრები", nameEn: "Junior Scientist Chemistry Lab Kit", priceValue: 75, price: "75 ₾", cat: "kids", icon: "fa-flask", gender: "unisex", minAge: 6, maxAge: 13, interests: ["science", "toys"], tags: ["ბავშვ", "ექსპერიმენტ", "მეცნიერ", "შემეცნებით", "kid", "child", "science", "lab"] },
+            { id: 4, nameKa: "მანათობელი გლობუსი ღამის სანათის ფუნქციით", nameEn: "Illuminated World Globe Night Light", priceValue: 85, price: "85 ₾", cat: "kids", icon: "fa-earth-americas", gender: "unisex", minAge: 5, maxAge: 14, interests: ["science", "adventure", "home"], tags: ["ბავშვ", "გეოგრაფია", "გლობუს", "სანათ", "kid", "child", "globe", "geography"] },
+            { id: 5, nameKa: "საბავშვო ციფრული ფოტოაპარატი მყისიერი ბეჭდვით", nameEn: "Kids Instant Print Digital Camera", priceValue: 130, price: "130 ₾", cat: "kids", icon: "fa-camera-retro", gender: "female", minAge: 5, maxAge: 13, interests: ["art", "tech", "toys"], tags: ["ბავშვ", "ფოტო", "კამერა", "გოგო", "kid", "child", "camera", "photo"] },
+            { id: 6, nameKa: "ხის ჭადრაკისა და შაშის სასწავლო ნაკრები", nameEn: "Wooden Chess & Checkers Learning Set", priceValue: 65, price: "65 ₾", cat: "kids", icon: "fa-chess", gender: "unisex", minAge: 6, maxAge: 16, interests: ["gaming", "science"], tags: ["ბავშვ", "ჭადრაკ", "ლოგიკ", "სამაგიდო", "kid", "child", "chess", "board"] },
+            { id: 7, nameKa: "ინტერაქტიული რობოტი-ლეკვი დისტანციური მართვით", nameEn: "Interactive Remote Control Robot Puppy", priceValue: 145, price: "145 ₾", cat: "kids", icon: "fa-robot", gender: "male", minAge: 4, maxAge: 11, interests: ["toys", "tech"], tags: ["ბავშვ", "რობოტ", "სათამაშო", "პულტიან", "ბიჭ", "kid", "child", "robot", "toy"] },
+            { id: 8, nameKa: "საბავშვო სამხატვრო მოლბერტი და საღებავების ჩემოდანი", nameEn: "Kids Art Easel & Painting Case", priceValue: 110, price: "110 ₾", cat: "kids", icon: "fa-palette", gender: "female", minAge: 4, maxAge: 12, interests: ["art", "toys"], tags: ["ბავშვ", "ხატვ", "საღებავ", "შემოქმედ", "გოგო", "kid", "child", "art", "painting"] },
+            { id: 9, nameKa: "კარავი-ვიგვამი საბავშვო ოთახისთვის განათებით", nameEn: "Kids Playroom Teepee Tent with Fairy Lights", priceValue: 155, price: "155 ₾", cat: "kids", icon: "fa-campground", gender: "female", minAge: 3, maxAge: 10, interests: ["toys", "home"], tags: ["ბავშვ", "კარავ", "ოთახ", "სათამაშო", "გოგო", "kid", "child", "tent", "play"] },
+            { id: 10, nameKa: "საბავშვო 3D კალამი ფერადი პლასტიკის ნაკრებით", nameEn: "Kids 3D Printing Pen with Filament Set", priceValue: 90, price: "90 ₾", cat: "kids", icon: "fa-wand-magic", gender: "unisex", minAge: 7, maxAge: 15, interests: ["art", "tech", "toys"], tags: ["ბავშვ", "3D", "ხატვ", "ტექნიკ", "kid", "child", "3d", "creative"] },
+            { id: 11, nameKa: "ბალანსის სკუტერი მანათობელი ბორბლებით", nameEn: "Kids Scooter with LED Light-Up Wheels", priceValue: 140, price: "140 ₾", cat: "kids", icon: "fa-bicycle", gender: "male", minAge: 4, maxAge: 11, interests: ["sport", "adventure", "toys"], tags: ["ბავშვ", "სკუტერ", "სპორტ", "ეზო", "ბიჭ", "kid", "child", "scooter", "outdoor"] },
+            { id: 12, nameKa: "მზის სისტემის 3D პლანეტარიუმის ასაწყობი მოდელი", nameEn: "3D Solar System Planetarium Model Kit", priceValue: 55, price: "55 ₾", cat: "kids", icon: "fa-sun", gender: "male", minAge: 6, maxAge: 13, interests: ["science", "toys"], tags: ["ბავშვ", "პლანეტ", "ასაწყობ", "კოსმოს", "ბიჭ", "kid", "child", "planet", "space"] },
 
-            { id: 21, nameKa: "არომატული დიფუზორი", nameEn: "Aroma Diffuser", priceNum: 85, price: "85 ₾", cat: "home", icon: "fa-wind" },
-            { id: 22, nameKa: "მთვარის 3D სანათი", nameEn: "3D Moon Lamp", priceNum: 55, price: "55 ₾", cat: "home", icon: "fa-moon" },
-            { id: 23, nameKa: "სოიოს სანთლების ნაკრები", nameEn: "Soy Candles Set", priceNum: 45, price: "45 ₾", cat: "home", icon: "fa-fire" },
-            { id: 24, nameKa: "ჭკვიანი ყავის ჭიქა", nameEn: "Smart Coffee Mug", priceNum: 160, price: "160 ₾", cat: "home", icon: "fa-mug-hot" },
-            { id: 25, nameKa: "დეკორატიული ბალიშების ნაკრები", nameEn: "Decorative Pillows Set", priceNum: 65, price: "65 ₾", cat: "home", icon: "fa-couch" },
-            { id: 26, nameKa: "მცენარეთა მოვლის ჭკვიანი სენსორი", nameEn: "Smart Plant Sensor", priceNum: 50, price: "50 ₾", cat: "home", icon: "fa-seedling" },
-            { id: 27, nameKa: "ბიო-ბუხარი მაგიდისთვის", nameEn: "Tabletop Bio Fireplace", priceNum: 140, price: "140 ₾", cat: "home", icon: "fa-house" },
-            { id: 28, nameKa: "ვენტილატორი & ჰაერის გამწმენდი", nameEn: "Air Purifier Fan", priceNum: 350, price: "350 ₾", cat: "home", icon: "fa-fan" },
-            { id: 29, nameKa: "სავიზიტო/ღვინის თარო", nameEn: "Wine Rack Stand", priceNum: 95, price: "95 ₾", cat: "home", icon: "fa-wine-bottle" },
-            { id: 30, nameKa: "პრემიუმ ხარისხის პლედი", nameEn: "Premium Throw Blanket", priceNum: 80, price: "80 ₾", cat: "home", icon: "fa-bed" },
+            // --- TECH & GADGETS (ტექნიკა & გაჯეტები - 10 პროდუქტი) ---
+            { id: 13, nameKa: "ჭკვიანი ფიტნეს საათი (Smartwatch)", nameEn: "Smart Fitness Watch", priceValue: 150, price: "150 ₾", cat: "tech", icon: "fa-clock", gender: "unisex", minAge: 12, maxAge: 99, interests: ["tech", "sport"], tags: ["ტექნიკ", "საათ", "სპორტ", "მეგობარ", "პარტნიორ", "tech", "watch", "fitness"] },
+            { id: 14, nameKa: "უსადენო ყურსასმენები ხმაურის ჩახშობით", nameEn: "Wireless Noise-Cancelling Earbuds", priceValue: 220, price: "220 ₾", cat: "tech", icon: "fa-headphones", gender: "unisex", minAge: 12, maxAge: 99, interests: ["tech", "music"], tags: ["ტექნიკ", "ყურსასმენ", "მუსიკ", "მეგობარ", "tech", "earbuds", "audio", "music"] },
+            { id: 15, nameKa: "პორტატული წყალგაუმტარი ბლუთუზ დინამიკი", nameEn: "Portable Waterproof Bluetooth Speaker", priceValue: 135, price: "135 ₾", cat: "tech", icon: "fa-volume-high", gender: "male", minAge: 12, maxAge: 99, interests: ["tech", "music", "adventure"], tags: ["ტექნიკ", "დინამიკ", "მუსიკ", "მოგზაურ", "ბიჭ", "tech", "speaker", "music"] },
+            { id: 16, nameKa: "ელექტრონული წიგნების წამკითხველი (E-Reader)", nameEn: "E-Ink Electronic Book Reader", priceValue: 320, price: "320 ₾", cat: "tech", icon: "fa-book-open", gender: "unisex", minAge: 14, maxAge: 99, interests: ["reading", "tech"], tags: ["ტექნიკ", "წიგნ", "კითხვ", "დედა", "მეგობარ", "tech", "book", "reading"] },
+            { id: 17, nameKa: "მინი პორტატული პროექტორი სახლის კინოთეატრისთვის", nameEn: "Mini Portable Home Cinema Projector", priceValue: 290, price: "290 ₾", cat: "tech", icon: "fa-film", gender: "unisex", minAge: 13, maxAge: 99, interests: ["tech", "home"], tags: ["ტექნიკ", "კინო", "ფილმ", "პარტნიორ", "ოჯახ", "tech", "projector", "cinema"] },
+            { id: 18, nameKa: "სწრაფი დამუხტვის პორტატული დამტენი (20,000 mAh)", nameEn: "Fast-Charging Power Bank (20,000 mAh)", priceValue: 95, price: "95 ₾", cat: "tech", icon: "fa-battery-full", gender: "unisex", minAge: 13, maxAge: 99, interests: ["tech", "adventure"], tags: ["ტექნიკ", "დამტენ", "მოგზაურ", "კოლეგა", "tech", "powerbank", "travel"] },
+            { id: 19, nameKa: "უსადენო დამტენი სადგური 3-1-ში სმარტფონისა და საათისთვის", nameEn: "3-in-1 Wireless Charging Station", priceValue: 115, price: "115 ₾", cat: "tech", icon: "fa-charging-station", gender: "male", minAge: 15, maxAge: 99, interests: ["tech", "home"], tags: ["ტექნიკ", "დამტენ", "ოფის", "კოლეგა", "მამა", "ბიჭ", "tech", "charger", "desk"] },
+            { id: 20, nameKa: "მექანიკური უსადენო გეიმინგ კლავიატურა განათებით", nameEn: "Backlit Wireless Mechanical Gaming Keyboard", priceValue: 185, price: "185 ₾", cat: "tech", icon: "fa-keyboard", gender: "male", minAge: 12, maxAge: 99, interests: ["gaming", "tech"], tags: ["ტექნიკ", "კლავიატურ", "კომპიუტერ", "გეიმ", "ბიჭ", "tech", "keyboard", "gaming"] },
+            { id: 21, nameKa: "ციფრული ფოტო ჩარჩო Wi-Fi სინქრონიზაციით", nameEn: "Wi-Fi Smart Digital Photo Frame", priceValue: 195, price: "195 ₾", cat: "tech", icon: "fa-image", gender: "female", minAge: 18, maxAge: 99, interests: ["home", "tech"], tags: ["ტექნიკ", "ფოტო", "დედა", "ბებია", "ოჯახ", "ქალ", "tech", "photo", "mom", "family"] },
+            { id: 22, nameKa: "სმარტ თერმო-ჭიქა ტემპერატურის კონტროლით", nameEn: "Smart Temperature-Control Travel Mug", priceValue: 110, price: "110 ₾", cat: "tech", icon: "fa-mug-hot", gender: "unisex", minAge: 16, maxAge: 99, interests: ["tech", "cooking"], tags: ["ტექნიკ", "ყავა", "ჩაი", "კოლეგა", "ოფის", "tech", "coffee", "colleague"] },
 
-            { id: 31, nameKa: "ტყავის საფულე", nameEn: "Leather Wallet", priceNum: 90, price: "90 ₾", cat: "lifestyle", icon: "fa-wallet" },
-            { id: 32, nameKa: "მზის სათვალე", nameEn: "Sunglasses", priceNum: 130, price: "130 ₾", cat: "lifestyle", icon: "fa-glasses" },
-            { id: 33, nameKa: "სახის მოვლის პრემიუმ ნაკრები", nameEn: "Skincare Gift Set", priceNum: 110, price: "110 ₾", cat: "lifestyle", icon: "fa-pump-soap" },
-            { id: 34, nameKa: "ელექტრო კბილის ჯაგრისი", nameEn: "Electric Toothbrush", priceNum: 150, price: "150 ₾", cat: "lifestyle", icon: "fa-tooth" },
-            { id: 35, nameKa: "სპორტული ზურგჩანთა", nameEn: "Sports Backpack", priceNum: 100, price: "100 ₾", cat: "lifestyle", icon: "fa-backpack" },
-            { id: 36, nameKa: "პარფიუმი / სუნამო", nameEn: "Designer Perfume", priceNum: 220, price: "220 ₾", cat: "lifestyle", icon: "fa-spray-can-sparkles" },
-            { id: 37, nameKa: "მაჯის საათი", nameEn: "Classic Wristwatch", priceNum: 280, price: "280 ₾", cat: "lifestyle", icon: "fa-stopwatch" },
-            { id: 38, nameKa: "თმის სახვევი / უთო", nameEn: "Hair Styler Tool", priceNum: 190, price: "190 ₾", cat: "lifestyle", icon: "fa-wind" },
-            { id: 39, nameKa: "უნივერსალური ტურისტული ჩემოდანი", nameEn: "Travel Suitcase", priceNum: 240, price: "240 ₾", cat: "lifestyle", icon: "fa-suitcase" },
-            { id: 40, nameKa: "აბრეშუმის პიჟამის ნაკრები", nameEn: "Silk Pajama Set", priceNum: 160, price: "160 ₾", cat: "lifestyle", icon: "fa-shirt" },
+            // --- EXPERIENCES & SPA (შთაბეჭდილებები & სპა - 9 პროდუქტი) ---
+            { id: 23, nameKa: "სპა და რელაქსაციის სრული პაკეტის ვაუჩერი", nameEn: "Full Spa & Relaxation Package Voucher", priceValue: 180, price: "180 ₾", cat: "experience", icon: "fa-spa", gender: "female", minAge: 18, maxAge: 99, interests: ["beauty", "relax"], tags: ["სპა", "რელაქს", "მასაჟ", "დედა", "პარტნიორ", "გოგო", "ქალ", "spa", "relax", "mom"] },
+            { id: 24, nameKa: "პარაპლანით ფრენა ინსტრუქტორთან ერთად გუდაურში", nameEn: "Tandem Paragliding Flight in Gudauri", priceValue: 300, price: "300 ₾", cat: "experience", icon: "fa-plane", gender: "unisex", minAge: 16, maxAge: 70, interests: ["adventure", "sport"], tags: ["ფრენ", "პარაპლან", "ექსტრემ", "თავგადასავალ", "flight", "adventure", "extreme"] },
+            { id: 25, nameKa: "კერამიკის ძერწვის მასტერკლასი ორ პერსონაზე", nameEn: "Pottery & Ceramics Workshop for Two", priceValue: 140, price: "140 ₾", cat: "experience", icon: "fa-hands-holding-circle", gender: "female", minAge: 10, maxAge: 99, interests: ["art", "relax"], tags: ["მასტერკლას", "კერამიკ", "ხელოვნებ", "პარტნიორ", "გოგო", "pottery", "workshop", "date"] },
+            { id: 26, nameKa: "ცხენებით გასეირნება ბუნებაში ინსტრუქტორთან ერთად", nameEn: "Guided Horseback Riding Tour in Nature", priceValue: 120, price: "120 ₾", cat: "experience", icon: "fa-horse", gender: "unisex", minAge: 8, maxAge: 75, interests: ["adventure", "sport"], tags: ["ცხენ", "ბუნებ", "გასეირნებ", "ბავშვ", "ოჯახ", "horse", "nature", "outdoor"] },
+            { id: 27, nameKa: "ქართული ღვინის დეგუსტაცია და ვახშამი მარანში", nameEn: "Wine Tasting & Traditional Dinner Experience", priceValue: 160, price: "160 ₾", cat: "experience", icon: "fa-wine-glass", gender: "male", minAge: 18, maxAge: 99, interests: ["cooking", "relax"], tags: ["ღვინ", "დეგუსტაცი", "ვახშამ", "მამა", "კოლეგა", "კაც", "wine", "dinner", "dad"] },
+            { id: 28, nameKa: "არომათერაპიის და ცხელი ქვების მასაჟის სეანსი", nameEn: "Aromatherapy & Hot Stone Massage Session", priceValue: 130, price: "130 ₾", cat: "experience", icon: "fa-hot-tub-person", gender: "female", minAge: 18, maxAge: 99, interests: ["beauty", "relax"], tags: ["მასაჟ", "სპა", "რელაქს", "დედა", "ქალ", "massage", "spa", "mom"] },
+            { id: 29, nameKa: "კულინარიული მასტერკლასი შეფ-მზარეულთან ერთად", nameEn: "Culinary Cooking Class with a Chef", priceValue: 150, price: "150 ₾", cat: "experience", icon: "fa-utensils", gender: "unisex", minAge: 14, maxAge: 99, interests: ["cooking", "art"], tags: ["კულინარი", "მასტერკლას", "სამზარეულო", "დედა", "მეგობარ", "cooking", "chef"] },
+            { id: 30, nameKa: "კარტინგის რბოლის ვაუჩერი ადრენალინის მოყვარულთათვის", nameEn: "Go-Karting Racing Voucher", priceValue: 80, price: "80 ₾", cat: "experience", icon: "fa-flag-checkered", gender: "male", minAge: 12, maxAge: 70, interests: ["sport", "adventure", "gaming"], tags: ["კარტინგ", "რბოლ", "მეგობარ", "ბიჭ", "karting", "racing", "fun"] },
+            { id: 31, nameKa: "პროფესიონალური ფოტოსესია სტუდიაში ან ბუნებაში", nameEn: "Professional Studio or Outdoor Photoshoot", priceValue: 200, price: "200 ₾", cat: "experience", icon: "fa-camera", gender: "female", minAge: 5, maxAge: 99, interests: ["beauty", "art"], tags: ["ფოტო", "ფოტოსესი", "ოჯახ", "პარტნიორ", "გოგო", "ქალ", "photoshoot", "family"] },
 
-            { id: 41, nameKa: "ხატვის მოლბერტი და საღებავები", nameEn: "Easel & Paint Set", priceNum: 125, price: "125 ₾", cat: "hobby", icon: "fa-palette" },
-            { id: 42, nameKa: "სამაგიდო თამაში კომპანიისთვის", nameEn: "Party Board Game", priceNum: 75, price: "75 ₾", cat: "hobby", icon: "fa-dice" },
-            { id: 43, nameKa: "ფოტოაპარატი (Instant Camera)", nameEn: "Instant Film Camera", priceNum: 250, price: "250 ₾", cat: "hobby", icon: "fa-camera-retro" },
-            { id: 44, nameKa: "გიტარა დამწყებთათვის", nameEn: "Beginner Acoustic Guitar", priceNum: 300, price: "300 ₾", cat: "hobby", icon: "fa-guitar" },
-            { id: 45, nameKa: "3D ხის ფაზლი", nameEn: "3D Wooden Puzzle", priceNum: 60, price: "60 ₾", cat: "hobby", icon: "fa-puzzle-piece" },
-            { id: 46, nameKa: "იოგას ხალიჩა და ბლოკები", nameEn: "Yoga Mat & Blocks", priceNum: 90, price: "90 ₾", cat: "hobby", icon: "fa-person-biking" },
-            { id: 47, nameKa: "კალიგრაფიის ნაკრები", nameEn: "Calligraphy Set", priceNum: 55, price: "55 ₾", cat: "hobby", icon: "fa-pen-nib" },
-            { id: 48, nameKa: "ჭადრაკის ხელნაკეთი ფიგურები", nameEn: "Handmade Chess Set", priceNum: 180, price: "180 ₾", cat: "hobby", icon: "fa-chess" },
-            { id: 49, nameKa: "სათევზაო ნაკრები", nameEn: "Fishing Starter Kit", priceNum: 210, price: "210 ₾", cat: "hobby", icon: "fa-fish" },
-            { id: 50, nameKa: "საკუთარი ბაღის მოსაწყენი ნაკრები", nameEn: "Indoor Gardening Kit", priceNum: 70, price: "70 ₾", cat: "hobby", icon: "fa-seedling" }
+            // --- HOME & DECOR (სახლი & დეკორი - 10 პროდუქტი) ---
+            { id: 32, nameKa: "მთვარის ფორმის 3D სანათი ხის სადგამით", nameEn: "3D Moon Lamp with Wooden Stand", priceValue: 65, price: "65 ₾", cat: "home", icon: "fa-moon", gender: "unisex", minAge: 6, maxAge: 99, interests: ["home", "relax"], tags: ["სანათ", "მთვარ", "დეკორ", "სახლ", "ბავშვ", "lamp", "moon", "decor"] },
+            { id: 33, nameKa: "არომა-დიფუზორი და ეთერზეთების პრემიუმ ნაკრები", nameEn: "Ultrasonic Aroma Diffuser & Essential Oils Set", priceValue: 95, price: "95 ₾", cat: "home", icon: "fa-wind", gender: "female", minAge: 16, maxAge: 99, interests: ["home", "relax", "beauty"], tags: ["სურნელ", "დიფუზორ", "სახლ", "დედა", "რელაქს", "ქალ", "diffuser", "home", "mom"] },
+            { id: 34, nameKa: "ნატურალური სოიოს ცვილის სურნელოვანი სანთლების ნაკრები", nameEn: "Natural Soy Wax Scented Candles Gift Box", priceValue: 70, price: "70 ₾", cat: "home", icon: "fa-fire-flame-curved", gender: "female", minAge: 16, maxAge: 99, interests: ["home", "relax", "beauty"], tags: ["სანთელ", "სურნელ", "დედა", "მეგობარ", "კოლეგა", "გოგო", "candle", "scented", "mom"] },
+            { id: 35, nameKa: "რბილი ნაქსოვი პლედი ცივი საღამოებისთვის", nameEn: "Chunky Knit Cozy Throw Blanket", priceValue: 125, price: "125 ₾", cat: "home", icon: "fa-couch", gender: "female", minAge: 12, maxAge: 99, interests: ["home", "relax"], tags: ["პლედ", "სახლ", "სიმყუდროვ", "დედა", "ბებია", "ქალ", "blanket", "cozy", "home"] },
+            { id: 36, nameKa: "ფრანგული პრესი და არომატული ყავის მარცვლების ნაკრები", nameEn: "French Press & Gourmet Coffee Beans Set", priceValue: 85, price: "85 ₾", cat: "home", icon: "fa-mug-saucer", gender: "unisex", minAge: 16, maxAge: 99, interests: ["cooking", "home"], tags: ["ყავა", "სახლ", "კოლეგა", "მამა", "coffee", "french press"] },
+            { id: 37, nameKa: "ხის სასაჩუქრე ყუთი სამკაულებისა და აქსესუარებისთვის", nameEn: "Handcrafted Wooden Jewelry & Accessories Box", priceValue: 110, price: "110 ₾", cat: "home", icon: "fa-gem", gender: "female", minAge: 16, maxAge: 99, interests: ["beauty", "home"], tags: ["სამკაულ", "ყუთ", "ორგანაიზერ", "დედა", "პარტნიორ", "გოგო", "ქალ", "jewelry", "box", "mom"] },
+            { id: 38, nameKa: "ბამბუკის აბაზანის სპა-თარო წიგნისა და ჭიქის სადგამით", nameEn: "Bamboo Bathtub Caddy Tray", priceValue: 90, price: "90 ₾", cat: "home", icon: "fa-bath", gender: "female", minAge: 18, maxAge: 99, interests: ["relax", "beauty", "home"], tags: ["აბაზან", "რელაქს", "სახლ", "დედა", "ქალ", "bath", "relax"] },
+            { id: 39, nameKa: "ფლორარიუმი — მინის გეომეტრიული ტერარიუმი მცენარეებით", nameEn: "Geometric Glass Terrarium with Succulents", priceValue: 105, price: "105 ₾", cat: "home", icon: "fa-seedling", gender: "unisex", minAge: 12, maxAge: 99, interests: ["home", "art"], tags: ["მცენარ", "ფლორარიუმ", "დეკორ", "ოფის", "კოლეგა", "plant", "terrarium", "decor"] },
+            { id: 40, nameKa: "ვარსკვლავიერი ცის პროექტორი საძინებლისთვის", nameEn: "Starry Sky Galaxy Night Projector", priceValue: 80, price: "80 ₾", cat: "home", icon: "fa-stars", gender: "unisex", minAge: 4, maxAge: 99, interests: ["home", "relax", "science"], tags: ["პროექტორ", "ვარსკვლავ", "ბავშვ", "სანათ", "დეკორ", "projector", "stars", "kid"] },
+            { id: 41, nameKa: "კერამიკის ჩაიდნისა და ჭიქების იაპონური სტილის ნაკრები", nameEn: "Japanese-Style Ceramic Tea Set", priceValue: 135, price: "135 ₾", cat: "home", icon: "fa-teapot", gender: "female", minAge: 16, maxAge: 99, interests: ["cooking", "home", "relax"], tags: ["ჩაი", "ჩაიდან", "კერამიკ", "დედა", "სახლ", "ქალ", "tea", "ceramic", "mom"] },
+
+            // --- HOBBY & CREATIVITY (ჰობი & შემოქმედება - 9 პროდუქტი) ---
+            { id: 42, nameKa: "ნომრებით ხატვის ნაკრები ტილოზე (40x50 სმ)", nameEn: "Paint by Numbers Canvas Kit (40x50 cm)", priceValue: 55, price: "55 ₾", cat: "hobby", icon: "fa-paintbrush", gender: "female", minAge: 9, maxAge: 99, interests: ["art", "relax"], tags: ["ხატვ", "ტილო", "ჰობი", "ბავშვ", "გოგო", "მეგობარ", "painting", "canvas", "hobby"] },
+            { id: 43, nameKa: "სამაგიდო სტრატეგიული თამაში მეგობრებისა და ოჯახისთვის", nameEn: "Strategy Board Game for Family & Friends", priceValue: 115, price: "115 ₾", cat: "hobby", icon: "fa-dice", gender: "unisex", minAge: 8, maxAge: 99, interests: ["gaming"], tags: ["სამაგიდო", "თამაშ", "ოჯახ", "მეგობარ", "ბავშვ", "board game", "family", "friends"] },
+            { id: 44, nameKa: "ხის მექანიკური 3D პაზლი-კონსტრუქტორი", nameEn: "Wooden Mechanical 3D Puzzle Model", priceValue: 85, price: "85 ₾", cat: "hobby", icon: "fa-puzzle-piece", gender: "male", minAge: 10, maxAge: 99, interests: ["science", "gaming", "art"], tags: ["პაზლ", "ასაწყობ", "ხის", "ჰობი", "ბიჭ", "მამა", "puzzle", "3d", "wood"] },
+            { id: 45, nameKa: "აკუსტიკური უკულელე დამწყებთათვის ჩანთით", nameEn: "Acoustic Ukulele Starter Kit with Gig Bag", priceValue: 140, price: "140 ₾", cat: "hobby", icon: "fa-guitar", gender: "unisex", minAge: 8, maxAge: 99, interests: ["music", "art"], tags: ["მუსიკ", "ინსტრუმენტ", "უკულელე", "ბავშვ", "მეგობარ", "music", "ukulele", "instrument"] },
+            { id: 46, nameKa: "სამოგზაურო მსოფლიოს გადასაფხეკი რუკა ტუბუსში", nameEn: "Scratch-Off World Travel Map in Tube", priceValue: 50, price: "50 ₾", cat: "hobby", icon: "fa-map-location-dot", gender: "unisex", minAge: 10, maxAge: 99, interests: ["adventure", "home"], tags: ["მოგზაურ", "რუკა", "მეგობარ", "კოლეგა", "travel", "map"] },
+            { id: 47, nameKa: "მწვადისა და ბარბექიუს უჟანგავი ფოლადის ხელსაწყოების ნაკრები", nameEn: "Stainless Steel BBQ & Grilling Tool Set", priceValue: 130, price: "130 ₾", cat: "hobby", icon: "fa-fire", gender: "male", minAge: 18, maxAge: 99, interests: ["cooking", "adventure"], tags: ["მწვად", "ბარბექიუ", "მამა", "კაც", "მეგობარ", "ბუნებ", "bbq", "grill", "dad"] },
+            { id: 48, nameKa: "ტყავის ყდიანი ბლოკნოტი და კალიგრაფიის კალმის ნაკრები", nameEn: "Leather Journal & Calligraphy Pen Set", priceValue: 75, price: "75 ₾", cat: "hobby", icon: "fa-feather-pointed", gender: "unisex", minAge: 12, maxAge: 99, interests: ["reading", "art"], tags: ["ბლოკნოტ", "კალამ", "წერ", "კოლეგა", "მეგობარ", "journal", "pen", "writing"] },
+            { id: 49, nameKa: "იოგასა და ფიტნესის ეკო-მეგობრული ხალიჩა და ბლოკები", nameEn: "Eco-Friendly Yoga Mat & Blocks Set", priceValue: 95, price: "95 ₾", cat: "hobby", icon: "fa-person-praying", gender: "female", minAge: 12, maxAge: 99, interests: ["sport", "relax"], tags: ["იოგა", "სპორტ", "ფიტნეს", "დედა", "გოგო", "ქალ", "yoga", "fitness", "sport"] },
+            { id: 50, nameKa: "პიკნიკის დაწნული კალათა ჭურჭლით 4 პერსონაზე", nameEn: "Wicker Picnic Basket Set for 4 Persons", priceValue: 175, price: "175 ₾", cat: "hobby", icon: "fa-basket-shopping", gender: "unisex", minAge: 16, maxAge: 99, interests: ["cooking", "adventure"], tags: ["პიკნიკ", "ბუნებ", "ოჯახ", "პარტნიორ", "დედა", "picnic", "nature", "family"] }
         ];
 
-        function renderCatalog(category) {
-            currentCategory = category;
+        const interestLabels = {
+            ka: {
+                tech: "ტექნიკა", music: "მუსიკა", art: "ხელოვნება", reading: "კითხვა",
+                sport: "სპორტი", beauty: "თავის მოვლა", relax: "რელაქსი", adventure: "თავგადასავალი",
+                home: "სახლი", cooking: "კულინარია", science: "მეცნიერება", toys: "სათამაშო", gaming: "თამაშები"
+            },
+            en: {
+                tech: "Tech", music: "Music", art: "Art", reading: "Reading",
+                sport: "Sport", beauty: "Beauty", relax: "Relax", adventure: "Adventure",
+                home: "Home", cooking: "Cooking", science: "Science", toys: "Toys", gaming: "Gaming"
+            }
+        };
+
+        const genderLabels = {
+            ka: { female: "ქალი / გოგო", male: "კაცი / ბიჭი", unisex: "უნივერსალური" },
+            en: { female: "Female", male: "Male", unisex: "Unisex" }
+        };
+
+        let wishlist = [];
+
+        function renderCatalog(filter = currentCategory) {
+            currentCategory = filter;
             const grid = document.getElementById('catalogGrid');
+            if(!grid) return;
             grid.innerHTML = '';
 
-            const filtered = category === 'all' ? catalogItems : catalogItems.filter(i => i.cat === category);
-
-            filtered.forEach(item => {
-                const name = currentLang === 'ka' ? item.nameKa : item.nameEn;
-                const isWished = wishlist.some(w => w.id === item.id);
-
-                const card = document.createElement('div');
-                card.className = "glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-brand-accent transition-all group";
-                card.innerHTML = `
-                    <div>
-                        <div class="w-full h-36 rounded-xl bg-brand-bg/50 border border-brand-accent/20 flex items-center justify-center text-brand-gold text-3xl mb-3 group-hover:scale-105 transition-all">
-                            <i class="fa-solid ${item.icon}"></i>
-                        </div>
-                        <h4 class="text-white font-semibold text-sm mb-1">${name}</h4>
-                        <span class="text-brand-gold font-bold text-sm">${item.price}</span>
-                    </div>
-                    <button onclick="toggleWishlist(${item.id})" class="mt-4 w-full py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all ${isWished ? 'bg-brand-accent text-white' : 'glass-panel text-brand-gold hover:bg-brand-gold/10'}">
-                        <i class="fa-solid fa-heart"></i> ${isWished ? (currentLang==='ka'?'სიაშია':'In Wishlist') : (currentLang==='ka'?'სიაში დამატება':'Add to Wishlist')}
-                    </button>
-                `;
-                grid.appendChild(card);
-            });
-
-            // Update category buttons active state
+            // Update active category button styling
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                if(btn.getAttribute('data-cat') === category) {
-                    btn.className = "cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-bold text-brand-gold border border-brand-gold/50 bg-brand-gold/10 transition-all";
+                if (btn.getAttribute('data-cat') === filter) {
+                    btn.className = "cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-bold text-brand-gold border border-brand-gold/60 bg-brand-gold/15 transition-all";
                 } else {
                     btn.className = "cat-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl glass-panel text-xs sm:text-sm font-semibold text-gray-300 hover:text-white hover:border-brand-accent transition-all";
                 }
             });
+            
+            const items = filter === 'all' ? catalogItems : catalogItems.filter(i => i.cat === filter);
+            
+            items.forEach(item => {
+                const title = currentLang === 'ka' ? item.nameKa : item.nameEn;
+                const inWishlist = wishlist.some(w => w.id === item.id);
+                const ageTag = item.cat === 'kids' 
+                    ? `<span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-gold/15 text-brand-gold border border-brand-gold/30">${item.minAge}-${item.maxAge} ${currentLang === 'ka' ? 'წელი' : 'y.o.'}</span>` 
+                    : '';
+
+                const gText = genderLabels[currentLang][item.gender] || '';
+                const gBadgeClass = item.gender === 'female' 
+                    ? 'bg-pink-500/15 text-pink-300 border-pink-500/30' 
+                    : item.gender === 'male' 
+                        ? 'bg-blue-500/15 text-blue-300 border-blue-500/30' 
+                        : 'bg-purple-500/15 text-purple-300 border-purple-500/30';
+
+                const intBadges = item.interests.slice(0, 2).map(intKey => 
+                    `<span class="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-gray-300 border border-white/10">#${interestLabels[currentLang][intKey] || intKey}</span>`
+                ).join('');
+                
+                const card = document.createElement('div');
+                card.className = "glass-panel p-5 sm:p-6 rounded-2xl flex flex-col justify-between hover:border-brand-accent transition-all";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between gap-1 mb-3 sm:mb-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-accent/20 flex items-center justify-center text-brand-gold text-lg sm:text-xl shrink-0">
+                                <i class="fa-solid ${item.icon}"></i>
+                            </div>
+                            <div class="flex flex-wrap justify-end gap-1">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full border ${gBadgeClass}">${gText}</span>
+                                ${ageTag}
+                            </div>
+                        </div>
+                        <h4 class="text-sm sm:text-base font-bold text-white mb-1.5 leading-snug">${title}</h4>
+                        <div class="flex flex-wrap gap-1 mb-2.5">${intBadges}</div>
+                        <p class="text-xs sm:text-sm text-brand-gold font-bold mb-4">${item.price}</p>
+                    </div>
+                    <button onclick="toggleWishlist(${item.id})" class="w-full py-2.5 rounded-xl ${inWishlist ? 'bg-brand-gold text-black' : 'bg-brand-accent text-white hover:bg-brand-accentHover'} font-semibold text-xs transition-all">
+                        <i class="fa-solid fa-heart mr-1.5"></i> ${inWishlist ? (currentLang === 'ka' ? 'სიიდან ამოღება' : 'Remove') : (currentLang === 'ka' ? 'სურვილებში დამატება' : 'Add to Wishlist')}
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        function filterCatalog(cat) {
-            renderCatalog(cat);
+        function filterCatalog(category) {
+            renderCatalog(category);
         }
 
-        function toggleWishlist(id) {
+        function toggleWishlist(id, fromAI = false) {
             const item = catalogItems.find(i => i.id === id);
+            if (!item) return;
             const index = wishlist.findIndex(w => w.id === id);
-            if(index > -1) {
+            if (index > -1) {
                 wishlist.splice(index, 1);
+                if (fromAI) {
+                    showToast(currentLang === 'ka' ? 'ამოღებულია სურვილების სიიდან' : 'Removed from wishlist');
+                }
             } else {
                 wishlist.push(item);
+                if (fromAI) {
+                    const title = currentLang === 'ka' ? item.nameKa : item.nameEn;
+                    showToast(currentLang === 'ka' ? `✓ "${title}" დაემატა სურვილებში!` : `✓ "${title}" added to wishlist!`);
+                }
             }
-            document.getElementById('wishlistBadge').innerText = wishlist.length;
+            updateWishlistBadge();
             renderCatalog(currentCategory);
             renderWishlist();
         }
 
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlistBadge');
+            if(badge) badge.innerText = wishlist.length;
+        }
+
         function renderWishlist() {
             const container = document.getElementById('wishlistContainer');
-            container.innerHTML = '';
+            const shareSection = document.getElementById('shareWishlistSection');
+            if(!container) return;
 
-            if(wishlist.length === 0) {
-                container.innerHTML = `<p class="text-gray-400 text-xs text-center py-6" data-i18n="wishlist-empty">${translations[currentLang]["wishlist-empty"]}</p>`;
-                document.getElementById('shareWishlistSection').classList.add('hidden');
+            if (wishlist.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">${translations[currentLang]['wishlist-empty']}</p>`;
+                if(shareSection) shareSection.classList.add('hidden');
                 return;
             }
 
-            document.getElementById('shareWishlistSection').classList.remove('hidden');
+            if(shareSection) shareSection.classList.remove('hidden');
+            container.innerHTML = '';
 
             wishlist.forEach(item => {
-                const name = currentLang === 'ka' ? item.nameKa : item.nameEn;
-                const row = document.createElement('div');
-                row.className = "flex items-center justify-between p-2.5 rounded-xl glass-panel border border-brand-accent/20 text-xs";
-                row.innerHTML = `
-                    <div class="flex items-center gap-2.5">
-                        <i class="fa-solid ${item.icon} text-brand-gold"></i>
-                        <div>
-                            <p class="text-white font-medium">${name}</p>
-                            <span class="text-brand-gold font-bold">${item.price}</span>
-                        </div>
-                    </div>
-                    <button onclick="toggleWishlist(${item.id})" class="text-red-400 hover:text-red-300 p-1">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                const title = currentLang === 'ka' ? item.nameKa : item.nameEn;
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-3 glass-panel rounded-xl text-xs";
+                div.innerHTML = `
+                    <span class="font-bold text-white">${title} (${item.price})</span>
+                    <button onclick="toggleWishlist(${item.id})" class="text-red-400 hover:text-red-600"><i class="fa-solid fa-trash"></i></button>
                 `;
-                container.appendChild(row);
+                container.appendChild(div);
             });
         }
 
-        // Modals control
+        function copyWishlistShareLink() {
+            if (wishlist.length === 0) return;
+            const ids = wishlist.map(i => i.id).join(',');
+            const shareUrl = `${window.location.origin}${window.location.pathname}#wishlist=${ids}`;
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    showCopiedFeedback();
+                }).catch(() => fallbackCopyText(shareUrl));
+            } else {
+                fallbackCopyText(shareUrl);
+            }
+        }
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showCopiedFeedback();
+            } catch (err) {
+                showToast(text);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showCopiedFeedback() {
+            const btnText = document.getElementById('shareBtnText');
+            if(btnText) {
+                btnText.innerText = translations[currentLang]['wishlist-copied'];
+                setTimeout(() => {
+                    btnText.innerText = translations[currentLang]['wishlist-share'];
+                }, 2000);
+            }
+        }
+
+        function loadWishlistFromURL() {
+            const hash = window.location.hash;
+            if (hash && hash.includes('wishlist=')) {
+                const idsStr = hash.split('wishlist=')[1];
+                if (idsStr) {
+                    const ids = idsStr.split(',').map(n => parseInt(n));
+                    wishlist = catalogItems.filter(item => ids.includes(item.id));
+                    updateWishlistBadge();
+                    renderCatalog(currentCategory);
+                    renderWishlist();
+                    openWishlistModal();
+                }
+            }
+        }
+
         function openAIChatModal() { document.getElementById('aiChatModal').classList.remove('hidden'); }
         function closeAIChatModal() { document.getElementById('aiChatModal').classList.add('hidden'); }
-        function openUserModal() { document.getElementById('userModal').classList.remove('hidden'); }
+        function openUserModal() { document.getElementById('userModal').classList.remove('hidden'); checkAuthSession(); }
         function closeUserModal() { document.getElementById('userModal').classList.add('hidden'); }
-        function openWishlistModal() { 
-            renderWishlist();
-            document.getElementById('wishlistModal').classList.remove('hidden'); 
-        }
+        function openWishlistModal() { document.getElementById('wishlistModal').classList.remove('hidden'); }
         function closeWishlistModal() { document.getElementById('wishlistModal').classList.add('hidden'); }
 
-        // AI Chat simulation with correct age/budget distinction
-        function sendAIMessage() {
-            const input = document.getElementById('aiInput');
-            const text = input.value.trim();
-            if(!text) return;
-
-            const chatMessages = document.getElementById('chatMessages');
-            chatMessages.innerHTML += `<div class="p-3 glass-panel rounded-2xl text-white ml-6 bg-brand-accent/20"><b>შენ:</b> ${text}</div>`;
-            input.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            setTimeout(() => {
-                let reply = "შესანიშნავია! შენი მოთხოვნის მიხედვით კატალოგიდან შევარჩიე ეს იდეები:\n\n- იოგას ხალიჩა და სავარჯიშო ბლოკები — 90 ₾\n- კერამიკის ძერწვის მასტერკლასი — 90 ₾\n\nდაამატე ეს ნივთები სურვილების სიაში!";
-                if(text.toLowerCase().includes('7 წლის')) {
-                    reply = "შესანიშნავია! რადგან ბავშვი 7 წლისაა, კატალოგიდან შევარჩიე შესაფერისი საბავშვო იდეები:\n\n- 3D ხის ფაზლი — 60 ₾\n- ხატვის მოლბერტი და საღებავები — 125 ₾\n\nიპოვე ეს ნივთები კატალოგში და დაამატე სურვილების სიაში! 🎁";
-                }
-                chatMessages.innerHTML += `<div class="p-3 glass-panel rounded-2xl text-gray-300 mr-6"><b>AI ასისტენტი:</b> ${reply.replace(/\n/g, '<br>')}</div>`;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 800);
+        async function loginWithGoogle() {
+            if (!dbClient) {
+                showToast("Supabase client not initialized.");
+                return;
+            }
+            const { data, error } = await dbClient.auth.signInWithOAuth({
+                provider: 'google',
+                options: { redirectTo: window.location.href }
+            });
+            if (error) showToast(error.message);
         }
 
-        // Secret Santa row adder
+        async function checkAuthSession() {
+            if (!dbClient) return;
+            const { data: { session } } = await dbClient.auth.getSession();
+            const authContainer = document.getElementById('authContainer');
+            const profileView = document.getElementById('userProfileView');
+            const headerName = document.getElementById('headerUserName');
+
+            if (session && session.user) {
+                if(authContainer) authContainer.classList.add('hidden');
+                if(profileView) profileView.classList.remove('hidden');
+                
+                const user = session.user;
+                const name = user.user_metadata?.full_name || user.email || 'User';
+                if(document.getElementById('profileDisplayName')) document.getElementById('profileDisplayName').innerText = name;
+                if(document.getElementById('profileDisplayEmail')) document.getElementById('profileDisplayEmail').innerText = user.email || '';
+                if(headerName) headerName.innerText = name.split(' ')[0];
+            } else {
+                if(authContainer) authContainer.classList.remove('hidden');
+                if(profileView) profileView.classList.add('hidden');
+            }
+        }
+
+        async function logoutUser() {
+            if (dbClient) await dbClient.auth.signOut();
+            checkAuthSession();
+            document.getElementById('headerUserName').innerText = currentLang === 'ka' ? 'პროფილი' : 'Profile';
+        }
+
+        function quickAIPrompt(promptText) {
+            const input = document.getElementById('aiInput');
+            if (input) {
+                input.value = promptText;
+                sendAIMessage();
+            }
+        }
+
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
+            if (!input || !input.value.trim()) return;
+            const chat = document.getElementById('chatMessages');
+            
+            const userMsg = input.value.trim();
+            const youLabel = currentLang === 'ka' ? 'შენ' : 'You';
+            chat.innerHTML += `<div class="p-3 glass-panel rounded-2xl text-white text-right bg-brand-accent/20"><b>${youLabel}:</b> ${escapeHtml(userMsg)}</div>`;
+            input.value = '';
+            chat.scrollTop = chat.scrollHeight;
+
+            const typingId = 'typing-' + Date.now();
+            const thinkingText = translations[currentLang]['ai-thinking'];
+            chat.innerHTML += `<div id="${typingId}" class="p-3 glass-panel rounded-2xl text-gray-400 flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-brand-gold animate-spin"></i> 
+                <span>${thinkingText}</span>
+            </div>`;
+            chat.scrollTop = chat.scrollHeight;
+
+            setTimeout(() => {
+                const typingEl = document.getElementById(typingId);
+                if(typingEl) typingEl.remove();
+
+                const responseHtml = generateAISimulatedResponse(userMsg, currentLang);
+                const aiLabel = translations[currentLang]['ai-assistant'];
+                chat.innerHTML += `<div class="p-3 glass-panel rounded-2xl text-gray-200 space-y-2"><b>✨ ${aiLabel}:</b><br/>${responseHtml}</div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 700);
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>"']/g, function(m) {
+                return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
+            });
+        }
+
+        /**
+         * SMART AI GIFT RECOMMENDER ENGINE
+         * Parses AGE, GENDER, INTERESTS, and BUDGET independently from user prompt
+         * and returns the top matching items from the 50-item catalog.
+         */
+        function generateAISimulatedResponse(text, lang) {
+            const lowerText = text.toLowerCase();
+
+            // 1. EXTRACT AGE SEPARATELY FROM BUDGET
+            let detectedAge = null;
+            const ageRegex = /(\d{1,2})\s*(?:წლის|წელი|წლიანი|ასაკის|year\s*old|years\s*old|years|year|yo|y\.o\.?)/i;
+            const ageMatch = lowerText.match(ageRegex);
+            if (ageMatch) {
+                detectedAge = parseInt(ageMatch[1], 10);
+            }
+
+            // 2. DETECT CHILD / TEEN CONTEXT
+            const childKeywords = ['ბავშვ', 'შვილ', 'დისშვილ', 'ძმისშვილ', 'პატარა', 'მოზარდ', 'თინეიჯერ', 'kid', 'child', 'children', 'toddler', 'teen', 'teenager'];
+            const hasChildKeyword = childKeywords.some(kw => lowerText.includes(kw));
+            const isChild = hasChildKeyword || (detectedAge !== null && detectedAge <= 14);
+
+            // 3. DETECT GENDER (female | male | null)
+            let detectedGender = null;
+            const femalePatterns = /(?:გოგო|ქალ|დედ|ბები|დას|დაიკო|ცოლ|მეუღლე\s*გოგო|შეყვარებულ\s*გოგო|დისშვილ\s*გოგო|ქალიშვილ|girl|woman|female|mom|mother|sister|wife|girlfriend|grandma|daughter|niece)/i;
+            const malePatterns = /(?:ბიჭ|კაც|მამ|ბაბუ|ძმ|ქმარ|დისშვილ\s*ბიჭ|ვაჟ|boy|man|male|dad|father|brother|husband|boyfriend|grandpa|son|nephew)/i;
+
+            const hasFemale = femalePatterns.test(lowerText);
+            const hasMale = malePatterns.test(lowerText);
+
+            if (hasFemale && !hasMale) {
+                detectedGender = 'female';
+            } else if (hasMale && !hasFemale) {
+                detectedGender = 'male';
+            }
+
+            // 4. EXTRACT BUDGET SEPARATELY (Never confuse age with budget!)
+            let budget = null;
+            let textWithoutAge = lowerText.replace(ageRegex, ' ');
+
+            const budgetExplicitRegex = /(\d+)\s*(?:ლარ|₾|gel|ბიუჯეტ|ფარგლებში|მდე|ად|budget|under|around|max|up to)/i;
+            const budgetPrefixRegex = /(?:ბიუჯეტი|budget|under|max|around)\s*[:\-]?\s*(\d+)/i;
+
+            const explicitMatch = textWithoutAge.match(budgetExplicitRegex);
+            const prefixMatch = textWithoutAge.match(budgetPrefixRegex);
+
+            if (explicitMatch) {
+                budget = parseInt(explicitMatch[1], 10);
+            } else if (prefixMatch) {
+                budget = parseInt(prefixMatch[1], 10);
+            } else {
+                const remainingNumbers = textWithoutAge.match(/\d+/g);
+                if (remainingNumbers) {
+                    const plausibleBudgets = remainingNumbers.map(n => parseInt(n, 10)).filter(n => n >= 25);
+                    if (plausibleBudgets.length > 0) {
+                        budget = plausibleBudgets[0];
+                    }
+                }
+            }
+
+            // 5. DETECT USER INTERESTS (Maps Georgian & English keywords to catalog `interests`)
+            const interestKeywordMap = {
+                tech: /ტექნიკ|გაჯეტ|საათ|ყურსასმენ|კლავიატურ|დინამიკ|პროექტორ|ელექტრონ|tech|gadget|watch|audio|speaker|electronic/,
+                music: /მუსიკ|სიმღერ|უკულელე|გიტარ|ინსტრუმენტ|ყურსასმენ|დინამიკ|music|song|ukulele|guitar|instrument|audio/,
+                art: /ხატვ|ხელოვნებ|კერამიკ|ძერწვ|საღებავ|მოლბერტ|ფოტო|კალიგრაფ|შემოქმედ|art|paint|draw|pottery|photo|craft|creative/,
+                reading: /წიგნ|კითხვ|ლიტერატურ|ბლოკნოტ|წერ|book|read|reading|literature|journal|write/,
+                sport: /სპორტ|ფიტნეს|იოგა|ვარჯიშ|ველოსიპედ|სკუტერ|რბოლ|კარტინგ|sport|fitness|yoga|workout|scooter|racing/,
+                beauty: /თავის მოვლ|სილამაზ|სამკაულ|სპა|მასაჟ|სურნელ|beauty|spa|jewelry|skincare|massage/,
+                relax: /რელაქს|დასვენებ|სპა|მასაჟ|სანთელ|პლედ|აბაზან|მშვიდ|relax|rest|spa|massage|cozy|candle/,
+                adventure: /მოგზაურ|თავგადასავალ|ფრენ|პარაპლან|ცხენ|ლაშქრობ|ბუნებ|რუკა|ექსტრემ|travel|adventure|fly|paragliding|horse|nature|map/,
+                home: /სახლ|დეკორ|ინტერიერ|სანათ|მცენარ|ოთახ|სიმყუდროვ|home|decor|interior|lamp|plant|room/,
+                cooking: /კულინარი|სამზარეულო|მზარეულ|ყავა|ჩაი|ღვინ|მწვად|ბარბექიუ|პიკნიკ|cook|kitchen|chef|coffee|tea|wine|bbq|picnic/,
+                science: /მეცნიერ|კოსმოს|პლანეტ|ტელესკოპ|ქიმი|ექსპერიმენტ|ასტრონომ|გეოგრაფ|პაზლ|ლოგიკ|science|space|planet|telescope|chemistry|experiment|logic/,
+                toys: /სათამაშო|კონსტრუქტორ|რობოტ|კარავ|toy|toys|blocks|robot|play/,
+                gaming: /გეიმ|თამაშ|სამაგიდო|ჭადრაკ|კლავიატურ|კონსოლ|game|gaming|board game|chess|keyboard/
+            };
+
+            const detectedInterests = [];
+            for (const [interestKey, regex] of Object.entries(interestKeywordMap)) {
+                if (regex.test(lowerText)) {
+                    detectedInterests.push(interestKey);
+                }
+            }
+
+            // Detect persona cues for extra relevance
+            const isMom = /დედ|ბები|mom|mother|grandma/.test(lowerText);
+            const isDad = /მამ|ბაბუ|dad|father|grandpa/.test(lowerText);
+            const isPartner = /შეყვარებულ|ცოლ|ქმარ|პარტნიორ|მეუღლ|girlfriend|boyfriend|wife|husband|partner/.test(lowerText);
+            const isFriend = /მეგობარ|დაქალ|ძმაკაც|friend|bestie/.test(lowerText);
+            const isColleague = /კოლეგ|თანამშრომელ|უფროს|colleague|coworker|boss/.test(lowerText);
+
+            // 6. FILTER & SCORE CATALOG ITEMS
+            const filterItems = (strictBudget) => {
+                return catalogItems.filter(item => {
+                    // Budget filter (allow +15 GEL tolerance only on fallback pass)
+                    if (budget !== null) {
+                        const maxAllowed = strictBudget ? budget : budget + 15;
+                        if (item.priceValue > maxAllowed) return false;
+                    }
+
+                    // Gender filter: exclude opposite-gender-only items
+                    if (detectedGender === 'female' && item.gender === 'male') return false;
+                    if (detectedGender === 'male' && item.gender === 'female') return false;
+
+                    // Age & Child filter
+                    if (isChild) {
+                        const effectiveAge = detectedAge !== null ? detectedAge : 7;
+                        const ageFits = effectiveAge >= item.minAge && effectiveAge <= item.maxAge;
+                        const isKidAppropriate = item.cat === 'kids' || item.interests.includes('toys') || item.tags.includes('ბავშვ') || item.tags.includes('kid');
+                        return ageFits && isKidAppropriate;
+                    } else if (detectedAge !== null) {
+                        // Teen or adult with specific age
+                        if (detectedAge < item.minAge || detectedAge > item.maxAge) return false;
+                        if (detectedAge >= 16 && item.cat === 'kids' && item.maxAge <= 14) return false;
+                    } else {
+                        // General adult: exclude young-kid toys
+                        if (item.cat === 'kids' && item.maxAge <= 14) return false;
+                    }
+
+                    return true;
+                });
+            };
+
+            let candidates = filterItems(true);
+            if (candidates.length === 0 && budget !== null) {
+                candidates = filterItems(false);
+            }
+
+            // Score candidates based on gender match, interest overlap, persona & tags
+            const scored = candidates.map(item => {
+                let score = 0;
+
+                // Gender specificity bonus
+                if (detectedGender && item.gender === detectedGender) score += 10;
+                else if (detectedGender && item.gender === 'unisex') score += 4;
+
+                // Interest overlap bonus (strongest signal when user mentions hobbies/interests)
+                let matchedInterestsCount = 0;
+                detectedInterests.forEach(intKey => {
+                    if (item.interests.includes(intKey)) {
+                        score += 14;
+                        matchedInterestsCount++;
+                    }
+                });
+
+                // Child age bonus
+                if (isChild) {
+                    if (item.cat === 'kids') score += 10;
+                    if (detectedAge !== null && detectedAge >= item.minAge && detectedAge <= item.maxAge) score += 6;
+                }
+
+                // Persona bonuses
+                if (isMom && (item.tags.includes('დედა') || item.tags.includes('mom') || item.cat === 'experience' || item.cat === 'home')) score += 6;
+                if (isDad && (item.tags.includes('მამა') || item.tags.includes('dad') || item.cat === 'tech' || item.cat === 'hobby')) score += 6;
+                if (isPartner && (item.tags.includes('პარტნიორ') || item.tags.includes('date') || item.cat === 'experience' || item.cat === 'home')) score += 6;
+                if (isFriend && (item.tags.includes('მეგობარ') || item.tags.includes('friends') || item.cat === 'tech' || item.cat === 'hobby')) score += 6;
+                if (isColleague && (item.tags.includes('კოლეგა') || item.tags.includes('colleague') || item.cat === 'home' || item.cat === 'tech')) score += 6;
+
+                // Direct keyword tag matches
+                item.tags.forEach(tag => {
+                    if (lowerText.includes(tag)) score += 5;
+                });
+
+                // Small random tie-breaker so repeated queries feel fresh
+                score += Math.random() * 2;
+                return { item, score, matchedInterestsCount };
+            });
+
+            scored.sort((a, b) => b.score - a.score);
+            const selected = scored.slice(0, 4).map(s => s.item);
+
+            // Handle case when no items match criteria
+            if (selected.length === 0) {
+                const minPrice = isChild ? 55 : 50;
+                if (lang === 'ka') {
+                    return `სამწუხაროდ, მითითებული პარამეტრებით (ბიუჯეტი: <b>${budget || minPrice} ₾</b>) კატალოგში შესაბამისი საჩუქარი ვერ მოიძებნა. კატალოგში ფასები იწყება <b>${minPrice} ₾-დან</b> — სცადე ოდნავ გაზრდილი ბიუჯეტის მითითება! 💡`;
+                } else {
+                    return `Unfortunately, no matching gifts were found for those criteria (Budget: <b>${budget || minPrice} GEL</b>). Gifts start from <b>${minPrice} GEL</b> — try specifying a slightly higher budget! 💡`;
+                }
+            }
+
+            // Build formatted HTML response with direct "Add to Wishlist" buttons and matched tags
+            if (lang === 'ka') {
+                let criteriaParts = [];
+                if (isChild) {
+                    const genderWord = detectedGender === 'female' ? 'გოგონასთვის' : detectedGender === 'male' ? 'ბიჭისთვის' : 'ბავშვისთვის';
+                    criteriaParts.push(detectedAge !== null ? `<b>${detectedAge} წლის ${genderWord}</b>` : `<b>${genderWord}</b>`);
+                } else {
+                    if (isMom) criteriaParts.push(`<b>დედისთვის</b>`);
+                    else if (isDad) criteriaParts.push(`<b>მამისთვის</b>`);
+                    else if (isPartner) criteriaParts.push(`<b>საყვარელი ადამიანისთვის</b>`);
+                    else if (isFriend) criteriaParts.push(`<b>მეგობრისთვის</b>`);
+                    else if (isColleague) criteriaParts.push(`<b>კოლეგისთვის</b>`);
+                    else if (detectedGender === 'female') criteriaParts.push(`<b>ქალბატონისთვის / გოგოსთვის</b>`);
+                    else if (detectedGender === 'male') criteriaParts.push(`<b>მამაკაცისთვის / ბიჭისთვის</b>`);
+                    else criteriaParts.push(`<b>შენი მოთხოვნის შესაბამისად</b>`);
+                }
+
+                if (detectedInterests.length > 0) {
+                    const intNames = detectedInterests.map(k => interestLabels.ka[k]).join(', ');
+                    criteriaParts.push(`ინტერესები: <b>${intNames}</b>`);
+                }
+                if (budget !== null) {
+                    criteriaParts.push(`ბიუჯეტი: <b>${budget} ₾-მდე</b>`);
+                }
+
+                const itemsHtml = selected.map(item => {
+                    const itemInts = item.interests.map(k => `#${interestLabels.ka[k]}`).join(' ');
+                    return `
+                    <div class="p-2.5 rounded-xl bg-white/5 border border-brand-accent/25 flex items-center justify-between gap-2 my-1.5">
+                        <div>
+                            <div class="font-bold text-white text-xs">${item.nameKa}</div>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <span class="text-brand-gold font-bold text-[11px]">${item.price}</span>
+                                <span class="text-[10px] text-gray-400">${itemInts}</span>
+                            </div>
+                        </div>
+                        <button onclick="toggleWishlist(${item.id}, true)" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white text-[10px] font-semibold transition-all">
+                            <i class="fa-solid fa-heart mr-1"></i>დამატება
+                        </button>
+                    </div>`;
+                }).join('');
+
+                const budgetHint = budget === null 
+                    ? `<br/><span class="text-[11px] text-gray-400">💡 შეგიძლია დააკონკრეტო სქესი, ინტერესი ან ბიუჯეტი (მაგ. „120 ლარამდე“) უფრო ზუსტი შერჩევისთვის!</span>` 
+                    : "";
+
+                return `სიამოვნებით! (${criteriaParts.join(' • ')}) კატალოგიდან შევარჩიე ყველაზე შესაფერისი საჩუქრები:<div class="mt-2">${itemsHtml}</div>${budgetHint}`;
+            } else {
+                let criteriaParts = [];
+                if (isChild) {
+                    const genderWord = detectedGender === 'female' ? 'girl' : detectedGender === 'male' ? 'boy' : 'child';
+                    criteriaParts.push(detectedAge !== null ? `for a <b>${detectedAge}-year-old ${genderWord}</b>` : `for a <b>${genderWord}</b>`);
+                } else {
+                    if (isMom) criteriaParts.push(`for <b>Mom</b>`);
+                    else if (isDad) criteriaParts.push(`for <b>Dad</b>`);
+                    else if (isPartner) criteriaParts.push(`for your <b>partner</b>`);
+                    else if (isFriend) criteriaParts.push(`for a <b>friend</b>`);
+                    else if (isColleague) criteriaParts.push(`for a <b>colleague</b>`);
+                    else if (detectedGender === 'female') criteriaParts.push(`for <b>her</b>`);
+                    else if (detectedGender === 'male') criteriaParts.push(`for <b>him</b>`);
+                    else criteriaParts.push(`based on your request`);
+                }
+
+                if (detectedInterests.length > 0) {
+                    const intNames = detectedInterests.map(k => interestLabels.en[k]).join(', ');
+                    criteriaParts.push(`Interests: <b>${intNames}</b>`);
+                }
+                if (budget !== null) {
+                    criteriaParts.push(`Budget: <b>up to ${budget} GEL</b>`);
+                }
+
+                const itemsHtml = selected.map(item => {
+                    const itemInts = item.interests.map(k => `#${interestLabels.en[k]}`).join(' ');
+                    return `
+                    <div class="p-2.5 rounded-xl bg-white/5 border border-brand-accent/25 flex items-center justify-between gap-2 my-1.5">
+                        <div>
+                            <div class="font-bold text-white text-xs">${item.nameEn}</div>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <span class="text-brand-gold font-bold text-[11px]">${item.price}</span>
+                                <span class="text-[10px] text-gray-400">${itemInts}</span>
+                            </div>
+                        </div>
+                        <button onclick="toggleWishlist(${item.id}, true)" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-brand-accent hover:bg-brand-accentHover text-white text-[10px] font-semibold transition-all">
+                            <i class="fa-solid fa-heart mr-1"></i>Add
+                        </button>
+                    </div>`;
+                }).join('');
+
+                const budgetHint = budget === null 
+                    ? `<br/><span class="text-[11px] text-gray-400">💡 Mention gender, interests, or budget (e.g. "under 120 GEL") to narrow down results even further!</span>` 
+                    : "";
+
+                return `Here are the best gift matches (${criteriaParts.join(' • ')}) from our catalog:<div class="mt-2">${itemsHtml}</div>${budgetHint}`;
+            }
+        }
+
         function addMemberRow() {
             const container = document.getElementById('membersContainer');
+            if(!container) return;
             const row = document.createElement('div');
-            row.className = "flex flex-col sm:flex-row gap-2 member-row";
+            row.className = 'flex flex-col sm:flex-row gap-2 member-row';
             row.innerHTML = `
-                <input type="text" placeholder="სახელი გვარი" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-name">
-                <input type="email" placeholder="ელ-ფოსტა" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-email">
-                <input type="url" placeholder="Wishlist ბმული" class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-wishlist">
+                <input type="text" placeholder="${translations[currentLang]['name-placeholder']}" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-name" data-i18n-placeholder="name-placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <input type="email" placeholder="${translations[currentLang]['email-placeholder']}" required class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-email" data-i18n-placeholder="email-placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <input type="url" placeholder="${translations[currentLang]['wishlist-placeholder']}" class="flex-1 glass-input p-2.5 sm:p-3 rounded-xl text-sm member-wishlist" data-i18n-placeholder="wishlist-placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             `;
             container.appendChild(row);
         }
 
-        function handleSantaDraw(e) {
-            e.preventDefault();
-            const names = document.querySelectorAll('.member-name');
-            if(names.length < 2) {
-                alert("გთხოვთ დაამატოთ მინიმუმ 2 მონაწილე!");
-                return;
-            }
+        const santaForm = document.getElementById('santaForm');
+        if(santaForm) {
+            santaForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const groupName = document.getElementById('santaGroupName').value;
+                
+                const rows = document.querySelectorAll('.member-row');
+                const names = [];
+                const emails = [];
+                const wishlists = [];
+
+                rows.forEach(row => {
+                    const nameVal = row.querySelector('.member-name').value.trim();
+                    const emailVal = row.querySelector('.member-email').value.trim();
+                    const wishlistVal = row.querySelector('.member-wishlist').value.trim();
+                    
+                    if (nameVal && emailVal) {
+                        names.push(nameVal);
+                        emails.push(emailVal);
+                        wishlists.push(wishlistVal);
+                    }
+                });
+
+                if (names.length < 2) {
+                    showToast(currentLang === 'ka' ? 'სანტების გასანაწილებლად საჭიროა სულ მცირე 2 სრულყოფილი მონაწილე!' : 'At least 2 participants with name and email required!');
+                    return;
+                }
+
+                let receiverIndices = names.map((_, i) => i);
+                let valid = false;
+                while (!valid) {
+                    receiverIndices.sort(() => Math.random() - 0.5);
+                    valid = receiverIndices.every((recIdx, giverIdx) => recIdx !== giverIdx);
+                }
+
+                const membersData = names.map((giver, idx) => ({
+                    giver: giver,
+                    giverEmail: emails[idx],
+                    target: names[receiverIndices[idx]],
+                    targetWishlist: wishlists[receiverIndices[idx]] || '#'
+                }));
+
+                if (dbClient) {
+                    try {
+                        await dbClient.from('secret_santa_groups').insert([{ group_name: groupName, members: JSON.stringify(membersData) }]);
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }
+
+                renderSantaCards(membersData);
+            });
+        }
+
+        function renderSantaCards(members) {
+            const container = document.getElementById('santaCardsList');
+            if(!container) return;
+            container.innerHTML = '';
+
+            members.forEach((m, idx) => {
+                const card = document.createElement('div');
+                card.className = "glass-panel p-4 rounded-2xl border border-brand-accent/30 space-y-3";
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-white text-sm"><i class="fa-solid fa-user text-brand-gold mr-2"></i>${escapeHtml(m.giver)}</span>
+                        <span class="text-[10px] text-gray-400">${escapeHtml(m.giverEmail)}</span>
+                    </div>
+                    <div id="target-box-${idx}" class="p-3 glass-panel-gold rounded-xl text-center hidden">
+                        <span class="text-xs text-gray-400 block">${currentLang === 'ka' ? 'შენი სანტას სამიზნეა:' : 'Your target is:'}</span>
+                        <span class="font-extrabold text-brand-gold text-base block mt-1">${escapeHtml(m.target)}</span>
+                        ${m.targetWishlist !== '#' ? `<a href="${escapeHtml(m.targetWishlist)}" target="_blank" class="inline-block mt-2 text-xs text-brand-accent hover:underline"><i class="fa-solid fa-heart mr-1"></i>${currentLang === 'ka' ? 'სურვილების სიის ნახვა' : 'View Wishlist'}</a>` : ''}
+                    </div>
+                    <button onclick="toggleRevealTarget(${idx})" class="w-full py-2 rounded-xl bg-brand-accent/20 border border-brand-accent/40 text-xs text-white hover:bg-brand-accent transition-all">
+                        👁️ ${currentLang === 'ka' ? 'ვინაობის სანახავად დააჭირეთ' : 'Click to Reveal Identity'}
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+
             document.getElementById('santaResults').classList.remove('hidden');
-            const list = document.getElementById('santaCardsList');
-            list.innerHTML = `<div class="p-3 glass-panel rounded-xl text-xs text-brand-gold col-span-2 text-center">სანტები კონფიდენციალურად გადანაწილდა და მონაწილეებს მეილით გაეგზავნათ!</div>`;
         }
 
-        function loginWithGoogle() {
-            alert("Google ავტორიზაცია დაკავშირებულია Supabase-თან!");
-            document.getElementById('authContainer').classList.add('hidden');
-            document.getElementById('userProfileView').classList.remove('hidden');
-            document.getElementById('profileDisplayName').innerText = "გიორგი ბერიძე";
-            document.getElementById('profileDisplayEmail').innerText = "giorgi@example.com";
-            document.getElementById('headerUserName').innerText = "გიორგი";
+        function toggleRevealTarget(idx) {
+            const box = document.getElementById(`target-box-${idx}`);
+            if(box) box.classList.toggle('hidden');
         }
 
-        function logoutUser() {
-            document.getElementById('authContainer').classList.remove('hidden');
-            document.getElementById('userProfileView').classList.add('hidden');
-            document.getElementById('headerUserName').innerText = "პროფილი";
-        }
-
-        function copyWishlistShareLink() {
-            navigator.clipboard.writeText(window.location.href);
-            const btnText = document.getElementById('shareBtnText');
-            btnText.innerText = "✓ ბმული დაკოპირდა!";
-            setTimeout(() => { btnText.innerText = "სიის ბმულის კოპირება / გაზიარება"; }, 2000);
-        }
-
-        // Initialize stars background
-        const starsContainer = document.getElementById('starsContainer');
-        for(let i=0; i<40; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.width = (Math.random() * 3 + 1) + 'px';
-            star.style.height = star.style.width;
-            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-            star.style.setProperty('--opacity', Math.random());
-            starsContainer.appendChild(star);
-        }
-
-        // Initial render
-        renderCatalog('all');
+        window.onload = function() {
+            renderCatalog('all');
+            loadWishlistFromURL();
+            checkAuthSession();
+            const container = document.getElementById('starsContainer');
+            if(container) {
+                for (let i = 0; i < 60; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.width = star.style.height = `${Math.random() * 3 + 1}px`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.setProperty('--duration', `${Math.random() * 4 + 2}s`);
+                    container.appendChild(star);
+                }
+            }
+        };
     </script>
 </body>
 </html>
